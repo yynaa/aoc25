@@ -1,5 +1,6 @@
 import gleam/io
 
-pub fn main() -> Nil {
+pub fn main() -> Int {
   io.println("gold")
+  0
 }

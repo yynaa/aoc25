@@ -11,4 +11,5 @@ a journal for each day can be found in the appropriate folder
 
 | day | silver time | gold time |
 |-----|-------------|-----------|
-| 1   | 3.518       | 3.481     |
+| 1   | 3.518ms     | 3.481ms   |
+| 2   | 0.271ms     | 0.572ms   |
