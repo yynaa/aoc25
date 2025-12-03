@@ -3,7 +3,6 @@ import gleam/string
 import simplifile
 import gleam/list
 import gleam/int
-import gleam/order
 import gleam/float
 
 fn list_to_int(i: List(Int)) -> Int {
@@ -13,16 +12,9 @@ fn list_to_int(i: List(Int)) -> Int {
   }
 }
 
-fn fill(v: a, n: Int) -> List(a) {
-  case n <= 0 {
-    True -> []
-    False -> [v, ..fill(v, n-1)]
-  }
-}
-
 fn explore(best: List(Int), c: Int) -> List(Int) {
-  case list.contains(best, -1) {
-    True -> list.reverse(best) |> fill_empty_in_best(c) |> list.reverse
+  case list.length(best) < 12 {
+    True -> [c, ..best]
     False -> case list.first(best) {
       Error(_) -> panic
       Ok(first) -> case c >= first {
@@ -44,23 +36,17 @@ fn remove_first_increase(l: List(Int)) -> List(Int) {
   }
 }
 
-fn fill_empty_in_best(best: List(Int), c: Int) -> List(Int) {
-  case best {
-    [-1, ..tail] -> [c, ..tail]
-    [head, ..tail] -> [head, ..fill_empty_in_best(tail, c)]
-    _ -> panic
-  }
+fn parser(s: String) -> List(Int) {
+  string.to_graphemes(s) |> list.try_map(int.parse) |> result.unwrap([])
 }
 
 pub fn main() -> Int {
   let assert Ok(input) = simplifile.read("input.txt")
   let battery_packs = string.trim(input)
     |> string.split("\n")
-    |> list.map(string.to_graphemes)
-    |> list.map(list.try_map(_, int.parse))
-    |> list.map(result.unwrap(_, []))
+    |> list.map(parser)
 
-  let bests = list.map(battery_packs, list.fold_right(_, fill(-1, 12), explore))
+  let bests = list.map(battery_packs, list.fold_right(_, [], explore))
     |> list.map(list_to_int)
 
   list.fold(bests, 0, int.add)

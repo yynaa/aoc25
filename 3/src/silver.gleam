@@ -31,13 +31,15 @@ fn explore(best: #(Int, Int), c: Int) -> #(Int, Int) {
   }
 }
 
+fn parser(s: String) -> List(Int) {
+  string.to_graphemes(s) |> list.try_map(int.parse) |> result.unwrap([])
+}
+
 pub fn main() -> Int {
   let assert Ok(input) = simplifile.read("input.txt")
   let battery_packs = string.trim(input)
     |> string.split("\n")
-    |> list.map(string.to_graphemes)
-    |> list.map(list.try_map(_, int.parse))
-    |> list.map(result.unwrap(_, []))
+    |> list.map(parser)
 
   let bests = list.map(battery_packs, list.fold_right(_, #(-1, -1), explore))
     |> list.map(tuple_to_int)
