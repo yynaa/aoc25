@@ -1,0 +1,3 @@
+# day 3
+
+surprisingly easy algorithmically, i suspect today is a nightmare to optimize...
