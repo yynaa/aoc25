@@ -14,4 +14,4 @@ a journal for each day can be found in the appropriate folder
 | 1   | 3.518ms     | 3.481ms   |
 | 2   | 0.271ms     | 0.572ms   |
 | 3   | 2.423ms     | 2.694ms   |
-| 4   | 32.54ms     | 630.0ms   |
+| 4   | 45.95ms     | 101.5ms   |
