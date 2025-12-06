@@ -44,14 +44,12 @@ fn parse_op_line(s: String) -> List(Op) {
 }
 
 fn parse_lines(l: List(String)) -> #(List(List(Value)), List(Op)) {
-  case l {
-    [ops] -> #([], parse_op_line(ops))
-    [h, ..tail] -> {
-      let p = parse_lines(tail)
-      #([parse_value_line(h), ..p.0] , p.1)
-    }
-    _ -> panic
-  }
+  let #(values_strings, op_string_wrapped) = list.split(l, list.length(l) - 1)
+
+  #(
+    list.map(values_strings, parse_value_line),
+    list.first(op_string_wrapped) |> result.unwrap("") |> parse_op_line
+  )
 }
 
 // --- ALG ---
