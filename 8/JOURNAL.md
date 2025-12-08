@@ -1,0 +1,3 @@
+# day 8
+
+horrendously slow today.....
