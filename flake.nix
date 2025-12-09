@@ -15,6 +15,8 @@
           gleam
           erlang
           rebar3
+          beamMinimal28Packages.elixir
+          beamMinimal28Packages.hex
         ];
       in
       {
