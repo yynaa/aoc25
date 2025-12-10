@@ -20,3 +20,6 @@ a journal for each day can be found in the appropriate folder
 | 7   | 1.647ms     | 1.943ms   |
 | 8   | 0.744 s     | 1.617 s   |
 | 9   | 1.519ms     | 765.1ms   |
+| 10  | 18.85ms     | `mtr*`    |
+
+`cwi*`: completion within infinity: takes a long time to complete, but is supposed to be a valid solution.

@@ -26,7 +26,8 @@ fn bench(f: fn() -> Int, n: Int) -> List(Float) {
 fn benchmark() -> Nil {
   let n = 500
   echo bench(silver.main, n) |> list.fold(0., float.add) |> float.divide(int.to_float(n)) |> result.unwrap(-1.)
-  echo bench(gold.main, n) |> list.fold(0., float.add) |> float.divide(int.to_float(n)) |> result.unwrap(-1.)
+  echo "cwi"
+  //echo bench(gold.main, n) |> list.fold(0., float.add) |> float.divide(int.to_float(n)) |> result.unwrap(-1.)
   Nil
 }
 
